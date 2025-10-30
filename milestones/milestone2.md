@@ -1,5 +1,8 @@
 # Milestone 2
 
+entity_relationship_diagram: https://dbdiagram.io/d/6902d6dc6735e11170680935
+
+
 This document should be completed and submitted during **Unit 6** of this course. You **must** check off all completed tasks in this document in order to receive credit for your work.
 
 ## Checklist
