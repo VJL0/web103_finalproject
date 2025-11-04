@@ -9,24 +9,24 @@ This document should be completed and submitted during **Unit 6** of this course
 
 This unit, be sure to complete all tasks listed below. To complete a task, place an `x` between the brackets.
 
-- [ ] In `planning/wireframes.md`: add wireframes for at least three pages in your web app.
-  - [ ] Include a list of pages in your app
-- [ ] In `planning/entity_relationship_diagram.md`: add the entity relationship diagram you developed for your database.
-  - [ ] Your entity relationship diagram should include the tables in your database.
-- [ ] Prepare your three-minute pitch presentation, to be presented during Unit 7 (the next unit).
-  - [ ] You do **not** need to submit any materials in advance of your pitch.
-- [ ] In this document, complete all three questions in the **Reflection** section below
+- [X] In `planning/wireframes.md`: add wireframes for at least three pages in your web app.
+  - [X] Include a list of pages in your app
+- [X] In `planning/entity_relationship_diagram.md`: add the entity relationship diagram you developed for your database.
+  - [X] Your entity relationship diagram should include the tables in your database.
+- [X] Prepare your three-minute pitch presentation, to be presented during Unit 7 (the next unit).
+  - [X] You do **not** need to submit any materials in advance of your pitch.
+- [X] In this document, complete all three questions in the **Reflection** section below
 
 ## Reflection
 
 ### 1. What went well during this unit?
 
-[👉🏾👉🏾👉🏾 your answer here]
+[👉🏾👉🏾👉🏾 your answer here] Brainstorming with the group members with all types of ideas. Getting to know more about each team member.
 
 ### 2. What were some challenges your group faced in this unit?
 
-[👉🏾👉🏾👉🏾 your answer here]
+[👉🏾👉🏾👉🏾 your answer here] Designing what the wireframe should look like. Deciding whether or not the features we would like to implement would be possible in a short time frame.
 
 ### 3. What additional support will you need in upcoming units as you continue to work on your final project?
 
-[👉🏾👉🏾👉🏾 your answer here]
+[👉🏾👉🏾👉🏾 your answer here] We would like to use the assistance from the TAs and from ChatGPT whenever we don't have access to the TAs.
