@@ -50,4 +50,25 @@ Backend: Express.js
 # [ADDITIONAL FEATURES GO HERE - ADD ALL FEATURES HERE IN THE FORMAT ABOVE; you will check these off and add gifs as you complete them]
 
 # Installation Instructions
-[instructions go here]
+
+### ⚙️ 1. Install all dependencies
+
+```bash
+npm run install
+```
+
+Installs dependencies for the root, server, and client in one command.
+
+### 💻 2. Start the development servers
+
+```bash
+npm run dev
+```
+
+Runs both:
+
+* 🟣 **Server** → `nodemon server.js` on port **3000**
+* 🔵 **Client** → `vite` on port **5173**
+
+Open your browser at **[http://localhost:5173](http://localhost:5173)**
+API available at **[http://localhost:3000/api](http://localhost:3000/api)**
