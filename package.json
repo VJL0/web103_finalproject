@@ -1,0 +1,11 @@
+{
+  "name": "quizlet-2o",
+  "private": true,
+  "scripts": {
+    "install": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev": "concurrently -k -n server,client -c magenta,cyan \"npm --prefix server run dev\" \"npm --prefix client run dev\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
