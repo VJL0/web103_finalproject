@@ -54,7 +54,7 @@ Backend: Express.js
 ### ⚙️ 1. Install all dependencies
 
 ```bash
-npm run install
+npm run setup
 ```
 
 Installs dependencies for the root, server, and client in one command.
