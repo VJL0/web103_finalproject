@@ -1,11 +1,19 @@
 {
-  "name": "quizlet-2o",
+  "name": "web103_finalproject",
   "private": true,
   "scripts": {
-    "setup": "npm install && npm install --prefix server && npm install --prefix client",
-    "dev": "concurrently -k -n server,client -c magenta,cyan \"npm --prefix server run dev\" \"npm --prefix client run dev\""
+    "dev": "concurrently \"npm:dev-client\" \"npm:dev-server\"",
+    "dev-client": "npm run --prefix client dev",
+    "dev-server": "npm run --prefix server dev",
+    "test:quiz:create": "node test_quiz_create.js",
+    "dev:test-quiz": "concurrently \"npm:dev-server\" \"wait-on http://localhost:3000/api/health && npm run test:quiz:create\""
   },
   "devDependencies": {
-    "concurrently": "^9.0.0"
+    "concurrently": "^9.0.0",
+    "wait-on": "^9.0.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "pg": "^8.16.3"
   }
 }

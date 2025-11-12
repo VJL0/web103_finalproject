@@ -4,10 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "node server.js"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-oauth2-jwt-bearer": "^1.7.1",
+    "pg": "^8.16.3",
+    "quizlet-2o": "file:.."
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
