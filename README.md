@@ -23,7 +23,14 @@ Backend: Express.js
 [Name of Feature 1]
 [short description goes here] Users can log in and log out via GitHub OAuth with Passport.js. 
 
-[gif goes here]
+<div>
+    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
+      <p>WEB103 Final Project MS3 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a0879ce1f8cd40b197221a9b2737a642-9e5974b70bdffc3b-full-play.gif#t=0.1">
+    </a>
+  </div>
 
 # [Name of Feature 2]
 [short description goes here] Group class flashcards. Group specific flashcards together that shares the same subject.
@@ -31,7 +38,16 @@ Backend: Express.js
 [gif goes here]
 
 # [Name of Feature 3]
-[short description goes here] create, update, delete flashcards & navigation bar
+[short description goes here] create, update, delete flashcards. **ONLY CREATE WORKS AT THE MOMENT**
+
+<div>
+    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
+      <p>WEB103 Final Project MS3 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a0879ce1f8cd40b197221a9b2737a642-9e5974b70bdffc3b-full-play.gif#t=0.1">
+    </a>
+  </div>
 
 # [Name of Feature 4]
 [short description goes here] Search bar for certain flashcard sets
@@ -46,6 +62,19 @@ Backend: Express.js
 [short description goes here] Favorites/ bookmark list for more important flashcard sets
 
 [gif goes here]
+
+# [Name of Feature 8]
+[short description goes here] Navigation Bar for the menu options.
+
+[gif goes here]
+<div>
+    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
+      <p>WEB103 Final Project MS3 - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a0879ce1f8cd40b197221a9b2737a642-9e5974b70bdffc3b-full-play.gif#t=0.1">
+    </a>
+  </div>
 
 # [ADDITIONAL FEATURES GO HERE - ADD ALL FEATURES HERE IN THE FORMAT ABOVE; you will check these off and add gifs as you complete them]
 
