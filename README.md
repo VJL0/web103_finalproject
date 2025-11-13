@@ -20,7 +20,7 @@ Frontend: React.js, Javascript, CSS
 Backend: Express.js
 
 # Features
-[Name of Feature 1]
+✅ # [Name of Feature 1] Authenication
 [short description goes here] Users can log in and log out via GitHub OAuth with Passport.js. 
 
 <div>
@@ -37,7 +37,7 @@ Backend: Express.js
 
 [gif goes here]
 
-# [Name of Feature 3]
+✅ # [Name of Feature 3] Create flashcards
 [short description goes here] create, update, delete flashcards. **ONLY CREATE WORKS AT THE MOMENT**
 
 <div>
@@ -49,32 +49,24 @@ Backend: Express.js
     </a>
   </div>
 
-# [Name of Feature 4]
+# [Name of Feature 4] Search Bar
 [short description goes here] Search bar for certain flashcard sets
 
-# [Name of Feature 5]
+# [Name of Feature 5] Achievement
 [short description goes here] completing a number of flashcard sets unlocks certain achievement badges.
 
-# [Name of Feature 6]
+# [Name of Feature 6] Store option
 [short description goes here] Store features that allow users to puchase customized theme for web page.
 
-# [Name of Feature 7]
+# [Name of Feature 7] Bookmark
 [short description goes here] Favorites/ bookmark list for more important flashcard sets
 
 [gif goes here]
 
-# [Name of Feature 8]
-[short description goes here] Navigation Bar for the menu options.
+# [Name of Feature 8] Navigation Bar
+[short description goes here] Navigation bar for the menu options.
 
 [gif goes here]
-<div>
-    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
-      <p>WEB103 Final Project MS3 - Watch Video</p>
-    </a>
-    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a0879ce1f8cd40b197221a9b2737a642-9e5974b70bdffc3b-full-play.gif#t=0.1">
-    </a>
-  </div>
 
 # [ADDITIONAL FEATURES GO HERE - ADD ALL FEATURES HERE IN THE FORMAT ABOVE; you will check these off and add gifs as you complete them]
 
