@@ -1,9 +1,16 @@
-// client/src/Dashboard.jsx
-import { NavLink, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import {
+  NavLink,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Profile from "./Profile";
 import CreateQuizPage from "./CreateQuizPage";
+import EditQuizPage from "./EditQuizPage";
+import QuizPlayerPage from "./QuizPlayerPage";
 
 function DashboardHome() {
   const { getAccessTokenSilently } = useAuth0();
@@ -48,8 +55,38 @@ function DashboardHome() {
   const totalPublic = quizzes.filter((q) => q.visibility === "PUBLIC").length;
   const totalPrivate = quizzes.filter((q) => q.visibility === "PRIVATE").length;
 
+  const handleDelete = async (quizId, quizTitle) => {
+    const confirmed = window.confirm(
+      `Are you sure you want to delete the quiz "${quizTitle}"? This cannot be undone.`
+    );
+    if (!confirmed) return;
+
+    try {
+      const token = await getAccessTokenSilently({
+        audience: import.meta.env.VITE_AUTH0_AUDIENCE,
+      });
+
+      const res = await fetch(`http://localhost:3000/api/quizzies/${quizId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData.error || `Failed to delete quiz (${res.status})`);
+      }
+
+      setQuizzes((prev) => prev.filter((q) => q.id !== quizId));
+    } catch (e) {
+      console.error(e);
+      alert(e.message || "Failed to delete quiz.");
+    }
+  };
+
   return (
-    <div style={{ marginTop: "1.5rem", width: "100%" }}>
+    <div style={{ marginTop: "0.5rem", width: "100%" }}>
       <h2 style={{ fontSize: "1.8rem", marginBottom: "0.5rem" }}>Your Quizzes</h2>
       <p style={{ color: "#cbd5e0", marginBottom: "1rem" }}>
         Create, manage, and practice your flashcard-style quizzes.
@@ -270,10 +307,7 @@ function DashboardHome() {
                     color: "#feb2b2",
                     cursor: "pointer",
                   }}
-                  onClick={() => {
-                    // we’ll implement delete in a later step
-                    alert("Delete quiz coming soon 🙂");
-                  }}
+                  onClick={() => handleDelete(quiz.id, quiz.title)}
                 >
                   Delete
                 </button>
@@ -288,7 +322,7 @@ function DashboardHome() {
 
 function ProfilePage() {
   return (
-    <div style={{ marginTop: "1.5rem" }}>
+    <div style={{ marginTop: "0.5rem" }}>
       <h2 style={{ fontSize: "1.8rem", marginBottom: "1rem" }}>Your Profile</h2>
       <div className="profile-card">
         <Profile />
@@ -298,30 +332,116 @@ function ProfilePage() {
 }
 
 export default function Dashboard({ onLogout }) {
+  const navigate = useNavigate();
+  const { user } = useAuth0();
+
   return (
-    <div className="app-container">
-      <div className="main-card-wrapper" style={{ width: "100%", maxWidth: "900px" }}>
-        <header
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#1a1e27",
+        color: "#e2e8f0",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {/* Top nav to match Explore, with signed-in user */}
+      <header
+        style={{
+          padding: "0.9rem 2rem",
+          borderBottom: "1px solid rgba(255,255,255,0.08)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: "1rem",
+        }}
+      >
+        <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem" }}>
+          <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>QuizPath</div>
+          <div style={{ fontSize: "0.9rem", color: "#a0aec0" }}>
+            Your quiz dashboard
+          </div>
+        </div>
+
+        <div
           style={{
-            width: "100%",
             display: "flex",
-            justifyContent: "space-between",
+            gap: "0.75rem",
             alignItems: "center",
-            marginBottom: "1.5rem",
+            flexWrap: "wrap",
+            justifyContent: "flex-end",
           }}
         >
-          <div>
-            <h1 className="main-title" style={{ marginBottom: "0.25rem" }}>
-              QuizPath Dashboard
-            </h1>
-            <div style={{ color: "#a0aec0" }}>Create, manage and take quiz cards.</div>
-          </div>
+          <button
+            type="button"
+            style={{
+              background: "transparent",
+              border: "none",
+              color: "#e2e8f0",
+              cursor: "pointer",
+              fontSize: "0.9rem",
+            }}
+            onClick={() => navigate("/")}
+          >
+            Explore
+          </button>
+
+          {user && (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.5rem",
+                padding: "0.2rem 0.6rem",
+                borderRadius: "999px",
+                backgroundColor: "#2d313c",
+              }}
+            >
+              {user.picture && (
+                <img
+                  src={user.picture}
+                  alt={user.name || "User"}
+                  style={{
+                    width: "28px",
+                    height: "28px",
+                    borderRadius: "50%",
+                    border: "2px solid #63b3ed",
+                    objectFit: "cover",
+                  }}
+                />
+              )}
+              <span
+                style={{
+                  fontSize: "0.85rem",
+                  color: "#cbd5e0",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                Signed in as{" "}
+                <span style={{ fontWeight: 600 }}>
+                  {user.name || user.email || "User"}
+                </span>
+              </span>
+            </div>
+          )}
 
           <button className="button logout" onClick={onLogout}>
             Log Out
           </button>
-        </header>
+        </div>
+      </header>
 
+      {/* Main content */}
+      <main
+        style={{
+          flex: 1,
+          padding: "1.5rem 2rem 2rem",
+          maxWidth: "1200px",
+          width: "100%",
+          margin: "0 auto",
+        }}
+      >
+        {/* Sub-nav tabs for dashboard sections */}
         <nav
           style={{
             display: "flex",
@@ -375,18 +495,17 @@ export default function Dashboard({ onLogout }) {
           </NavLink>
         </nav>
 
-        <main style={{ width: "100%" }}>
+        <div style={{ width: "100%" }}>
           <Routes>
             <Route path="/" element={<DashboardHome />} />
             <Route path="/create" element={<CreateQuizPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            {/* We’ll implement these later */}
-            <Route path="/play/:id" element={<div style={{ marginTop: "1.5rem" }}>Quiz player coming soon…</div>} />
-            <Route path="/edit/:id" element={<div style={{ marginTop: "1.5rem" }}>Edit quiz coming soon…</div>} />
+            <Route path="/play/:id" element={<QuizPlayerPage />} />
+            <Route path="/edit/:id" element={<EditQuizPage />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   );
 }
