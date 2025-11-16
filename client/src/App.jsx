@@ -1,60 +1,28 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
-import ExplorePage from "./ExplorePage";
-import Dashboard from "./Dashboard";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
 
-function App() {
-  const { isAuthenticated, isLoading, error, logout } = useAuth0();
-
-  if (isLoading) {
-    return (
-      <div className="app-container">
-        <div className="loading-state">
-          <div className="loading-text">Loading...</div>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="app-container">
-        <div className="error-state">
-          <div className="error-title">Oops!</div>
-          <div className="error-message">Something went wrong</div>
-          <div className="error-sub-message">{error.message}</div>
-        </div>
-      </div>
-    );
-  }
-
+export default function App() {
   return (
-    <Routes>
-      {/* Public landing page */}
-      <Route path="/" element={<ExplorePage />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-      {/* Protected dashboard (requires login) */}
-      <Route
-        path="/dashboard/*"
-        element={
-          isAuthenticated ? (
-            <Dashboard
-              onLogout={() =>
-                logout({
-                  logoutParams: { returnTo: window.location.origin },
-                })
-              }
-            />
-          ) : (
-            <Navigate to="/" replace />
-          )
-        }
-      />
+        <Route path="/login" element={<Login />} />
 
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+        {/* 🔐 Protected Routes */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
