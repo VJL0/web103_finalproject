@@ -4,7 +4,7 @@ const BASE_URL = "https://opentdb.com/api.php";
  * Fetch trivia questions from Open Trivia DB.
  *
  * @param {Object} options
- * @param {number} options.amount - Number of questions (10–50 recommended).
+ * @param {number} options.amount - Number of questions.
  * @param {number|null} options.categoryId - Open Trivia category ID, or null for any.
  * @param {"easy"|"medium"|"hard"} [options.difficulty="hard"] - Difficulty level.
  * @returns {Promise<Array>} - Array of question objects.
