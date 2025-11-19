@@ -86,20 +86,20 @@ Complete the checklist below detailing each baseline, custom, and stretch featur
 
 ### 1. What went well during this unit?
 
-[👉🏾👉🏾👉🏾 your answer here]
+[👉🏾👉🏾👉🏾 your answer here] Finishing the project on time. Working together as a team.
 
 ### 2. What were some challenges your group faced in this unit?
 
-[👉🏾👉🏾👉🏾 your answer here]
+[👉🏾👉🏾👉🏾 your answer here] Fixing the small errors that were not expected. Planning to too many features which added to the stress of completing the project.
 
 ### 3. What were some of the highlights or achievements that you are most proud of in this project?
 
-[👉🏾👉🏾👉🏾 your answer here]
+[👉🏾👉🏾👉🏾 your answer here] The look of the app looks professional and clear adding to less distractions. 
 
 ### 4. Reflecting on your web development journey so far, how have you grown since the beginning of the course?
 
-[👉🏾👉🏾👉🏾 your answer here]
+[👉🏾👉🏾👉🏾 your answer here] Being more comfortable incorporating database into my frontend/ backend projects. Being better at working in a team. 
 
 ### 5. Looking ahead, what are your goals related to web development, and what steps do you plan to take to achieve them?
 
-[👉🏾👉🏾👉🏾 your answer here]
+[👉🏾👉🏾👉🏾 your answer here] Getting a job that incorporates the web development skills used in this class. Add the projects completed for this course onto our resume to show the hiring manager that we know our stuff. 
