@@ -1,4 +1,4 @@
-# Quizlet 2.OOOO
+# QuizPath
 CodePath WEB103 Final Project
 
 Designed and developed by: Victor jimenez-lorenzo, Suyesh Bhatta, Ryan Dong
@@ -12,7 +12,7 @@ This is a remake of quizlet. It helps boost proper study habits and rewards user
 [text goes here] This is a studing resource that lets you create flashcards and helps you stay productive. We added a store to help you stay motivated and purchase cool themes and badges. 
 
 # Inspiration
-Quizlet 2.0000 was inspired from the the far inferior popular Quizlet web app. It add features that us former students believe would have improved our predecessor in ways that surpasses basic study habits.
+QuizPath was inspired from the the far inferior popular Quizlet web app. It add features that us former students believe would have improved our predecessor in ways that surpasses basic study habits.
 
 # Tech Stack
 Frontend: React.js, Javascript, CSS
@@ -32,13 +32,13 @@ Backend: Express.js
     </a>
   </div>
 
-# [Name of Feature 2]
+✅ # [Name of Feature 2] Grouping
 [short description goes here] Group class flashcards. Group specific flashcards together that shares the same subject.
 
 [gif goes here]
 
 ✅ # [Name of Feature 3] Create flashcards
-[short description goes here] create, update, delete flashcards. **ONLY CREATE WORKS AT THE MOMENT**
+[short description goes here] create, update, delete flashcards. 
 
 <div>
     <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
@@ -48,20 +48,6 @@ Backend: Express.js
       <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a0879ce1f8cd40b197221a9b2737a642-9e5974b70bdffc3b-full-play.gif#t=0.1">
     </a>
   </div>
-
-# [Name of Feature 4] Search Bar
-[short description goes here] Search bar for certain flashcard sets
-
-# [Name of Feature 5] Achievement
-[short description goes here] completing a number of flashcard sets unlocks certain achievement badges.
-
-# [Name of Feature 6] Store option
-[short description goes here] Store features that allow users to puchase customized theme for web page.
-
-# [Name of Feature 7] Bookmark
-[short description goes here] Favorites/ bookmark list for more important flashcard sets
-
-[gif goes here]
 
 # [Name of Feature 8] Navigation Bar
 [short description goes here] Navigation bar for the menu options.
