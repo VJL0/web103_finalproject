@@ -4,6 +4,7 @@ CodePath WEB103 Final Project
 Designed and developed by: Victor jimenez-lorenzo, Suyesh Bhatta, Ryan Dong
 
 # 🔗 Link to deployed app:
+https://quizpath.onrender.com/
 
 # About
 This is a remake of quizlet. It helps boost proper study habits and rewards users with badges with completion of flashcard sets.
@@ -20,39 +21,65 @@ Frontend: React.js, Javascript, CSS
 Backend: Express.js
 
 # Features
-✅ # [Name of Feature 1] Authenication
-[short description goes here] Users can log in and log out via GitHub OAuth with Passport.js. 
+✅ # [Name of Feature 1] Extra Quiz Section
+[short description goes here] Quiz feature with different topics and multiple choice answers.
 
 <div>
-    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
-      <p>WEB103 Final Project MS3 - Watch Video</p>
+    <a href="https://www.loom.com/share/912e1288a56f4f569fa67efb48cbe149">
+      <p>WEB103 Final - Extra Quiz Section - Watch Video</p>
     </a>
-    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a0879ce1f8cd40b197221a9b2737a642-9e5974b70bdffc3b-full-play.gif#t=0.1">
+    <a href="https://www.loom.com/share/912e1288a56f4f569fa67efb48cbe149">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/912e1288a56f4f569fa67efb48cbe149-64b2046052f5b851-full-play.gif#t=0.1">
     </a>
   </div>
 
-✅ # [Name of Feature 2] Grouping
-[short description goes here] Group class flashcards. Group specific flashcards together that shares the same subject.
-
-[gif goes here]
-
-✅ # [Name of Feature 3] Create flashcards
+✅ # [Name of Feature 2] CRUD flashcards
 [short description goes here] create, update, delete flashcards. 
 
 <div>
-    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
-      <p>WEB103 Final Project MS3 - Watch Video</p>
+    <a href="https://www.loom.com/share/be75f902dece4d8da8ac9a53da357c79">
+      <p>WEB103 Final - CRUD - Watch Video</p>
     </a>
-    <a href="https://www.loom.com/share/a0879ce1f8cd40b197221a9b2737a642">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/a0879ce1f8cd40b197221a9b2737a642-9e5974b70bdffc3b-full-play.gif#t=0.1">
+    <a href="https://www.loom.com/share/be75f902dece4d8da8ac9a53da357c79">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/be75f902dece4d8da8ac9a53da357c79-6545c7098e2e4368-full-play.gif#t=0.1">
     </a>
   </div>
 
-# [Name of Feature 8] Navigation Bar
+# [Name of Feature 3] Navigation Bar
 [short description goes here] Navigation bar for the menu options.
 
-[gif goes here]
+<div>
+    <a href="https://www.loom.com/share/0432e9982f614bc798e03ddb7b92a7fe">
+      <p>WEB103 Final - Navbar - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/0432e9982f614bc798e03ddb7b92a7fe">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/0432e9982f614bc798e03ddb7b92a7fe-08d8d10a83ad808f-full-play.gif#t=0.1">
+    </a>
+  </div>
+
+# [Name of Feature 4] Pivacy Based community quizzes
+[short description goes here] Creation of quizzes can be public or be set private restricting some users from accessing.
+
+<div>
+    <a href="https://www.loom.com/share/be75f902dece4d8da8ac9a53da357c79">
+      <p>WEB103 Final - CRUD - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/be75f902dece4d8da8ac9a53da357c79">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/be75f902dece4d8da8ac9a53da357c79-6545c7098e2e4368-full-play.gif#t=0.1">
+    </a>
+  </div>
+
+# [Name of Feature 5] Authenication with Google
+[short description goes here] Log in/ log out with Google email address
+
+<div>
+    <a href="https://www.loom.com/share/d55fb0175dc142079c3f77f7d081a8f0">
+      <p>WEB103 Final - Authentication - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/d55fb0175dc142079c3f77f7d081a8f0">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/d55fb0175dc142079c3f77f7d081a8f0-e4b0f70f503e9ae3-full-play.gif#t=0.1">
+    </a>
+  </div>
 
 # [ADDITIONAL FEATURES GO HERE - ADD ALL FEATURES HERE IN THE FORMAT ABOVE; you will check these off and add gifs as you complete them]
 
