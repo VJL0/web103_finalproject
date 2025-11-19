@@ -81,6 +81,14 @@ Complete the checklist below detailing each baseline, custom, and stretch featur
 ## Final Demo GIF
 
 🔗 [Here's a GIF walkthrough of the final project](👉🏾👉🏾👉🏾 your link here)
+<div>
+    <a href="https://www.loom.com/share/502250873df84c99b3b63c7f174b2d45">
+      <p>WEB103 Final - DEMO - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/502250873df84c99b3b63c7f174b2d45">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/502250873df84c99b3b63c7f174b2d45-fa3450233ab6f614-full-play.gif#t=0.1">
+    </a>
+  </div>
 
 ## Reflection
 
