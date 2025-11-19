@@ -15,7 +15,7 @@ router.get(
     failureRedirect: "/auth/failure",
   }),
   (req, res) => {
-    res.redirect(`${CLIENT_URL}/dashboard`); // frontend
+    res.redirect(CLIENT_URL); // frontend
   }
 );
 
