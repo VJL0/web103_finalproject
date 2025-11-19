@@ -11,17 +11,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// ----- CORS -----
-const allowedOrigins = [
-  process.env.CLIENT_ORIGIN,          // e.g. https://your-frontend.onrender.com (set in Render)
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
-].filter(Boolean);
-
+// ----- CORS (open for this project) -----
+// This will send Access-Control-Allow-Origin: * on all responses.
 app.use(
   cors({
-    origin: allowedOrigins,
-    credentials: true,
+    origin: "*",
   })
 );
 
