@@ -33,7 +33,7 @@ if (!rootElement) {
 }
 
 ReactDOM.createRoot(rootElement).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Auth0Provider
       domain={domain}
       clientId={clientId}
@@ -47,5 +47,5 @@ ReactDOM.createRoot(rootElement).render(
         <App />
       </BrowserRouter>
     </Auth0Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

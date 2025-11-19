@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import { QUICK_TOPICS } from "./quickTopics";
 
 export default function ExplorePage() {
   const navigate = useNavigate();
-  const {
-    isAuthenticated,
-    loginWithRedirect,
-    user,
-    logout,
-  } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, user, logout } = useAuth0();
 
   const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  // Per-topic settings: { [topicKey]: { amount, difficulty } }
+  const [topicSettings, setTopicSettings] = useState(() => {
+    const initial = {};
+    QUICK_TOPICS.forEach((t) => {
+      initial[t.key] = {
+        amount: 10,
+        difficulty: "hard",
+      };
+    });
+    return initial;
+  });
 
   useEffect(() => {
     (async () => {
@@ -41,6 +49,39 @@ export default function ExplorePage() {
     })();
   }, []);
 
+  const handleAmountChange = (topicKey, value) => {
+    const amount = Math.min(50, Math.max(10, Number(value) || 10));
+    setTopicSettings((prev) => ({
+      ...prev,
+      [topicKey]: {
+        ...prev[topicKey],
+        amount,
+      },
+    }));
+  };
+
+  const handleDifficultyChange = (topicKey, value) => {
+    const v = value.toLowerCase();
+    const allowed = ["easy", "medium", "hard"];
+    const difficulty = allowed.includes(v) ? v : "hard";
+    setTopicSettings((prev) => ({
+      ...prev,
+      [topicKey]: {
+        ...prev[topicKey],
+        difficulty,
+      },
+    }));
+  };
+
+  const handlePlayNow = (topicKey) => {
+    const settings = topicSettings[topicKey] || { amount: 10, difficulty: "hard" };
+    const params = new URLSearchParams();
+    params.set("topic", topicKey);
+    params.set("amount", String(settings.amount));
+    params.set("difficulty", settings.difficulty);
+    navigate(`/quick-play?${params.toString()}`);
+  };
+
   return (
     <div
       style={{
@@ -67,7 +108,7 @@ export default function ExplorePage() {
         >
           <div style={{ fontSize: "1.4rem", fontWeight: 700 }}>QuizPath</div>
           <div style={{ fontSize: "0.9rem", color: "#a0aec0" }}>
-            Flashcards for smarter practice
+            Flashcards & Quick Trivia
           </div>
         </div>
 
@@ -184,172 +225,302 @@ export default function ExplorePage() {
           margin: "0 auto",
         }}
       >
-        <section
-          style={{
-            marginBottom: "1.5rem",
-            display: "flex",
-            justifyContent: "space-between",
-            gap: "1rem",
-            flexWrap: "wrap",
-          }}
-        >
-          <div>
-            <h1
+
+                {/* Existing public quizzes section */}
+        <section>
+          <h2 style={{ fontSize: "1.6rem", marginBottom: "0.4rem" }}>
+            Community Quizzes
+          </h2>
+          <p style={{ color: "#a0aec0", marginBottom: "1rem" }}>
+            Public flashcard quizzes created by users. Log in to create your own
+            decks.
+          </p>
+
+          {loading && (
+            <div className="loading-state">
+              <div className="loading-text">Loading public quizzes…</div>
+            </div>
+          )}
+
+          {error && !loading && (
+            <div
               style={{
-                fontSize: "2rem",
-                margin: 0,
-                marginBottom: "0.4rem",
+                marginBottom: "1rem",
+                padding: "0.7rem 1rem",
+                borderRadius: "8px",
+                backgroundColor: "#c53030",
+                color: "#fff",
               }}
             >
-              Explore Public Quizzes
-            </h1>
-            <p style={{ color: "#a0aec0", margin: 0, maxWidth: "520px" }}>
-              Browse flashcard-style quizzes created by the community. Log in to
-              build your own decks and track your progress.
-            </p>
-          </div>
+              {error}
+            </div>
+          )}
+
+          {!loading && !error && quizzes.length === 0 && (
+            <div
+              style={{
+                padding: "1rem 1.2rem",
+                borderRadius: "10px",
+                backgroundColor: "#2d313c",
+                border: "1px dashed rgba(255,255,255,0.2)",
+              }}
+            >
+              <div style={{ marginBottom: "0.5rem", fontWeight: 500 }}>
+                No public quizzes yet.
+              </div>
+              <div style={{ color: "#a0aec0", fontSize: "0.9rem" }}>
+                Log in to create and share your own flashcard quizzes with the
+                community.
+              </div>
+            </div>
+          )}
+
+          {!loading && quizzes.length > 0 && (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+                gap: "1rem",
+                marginTop: "0.5rem",
+              }}
+            >
+              {quizzes.map((quiz) => (
+                <div
+                  key={quiz.id}
+                  style={{
+                    padding: "1rem 1.1rem",
+                    borderRadius: "14px",
+                    backgroundColor: "#262a33",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.5rem",
+                  }}
+                >
+                  <div>
+                    <div
+                      style={{
+                        fontSize: "1.1rem",
+                        fontWeight: 600,
+                        marginBottom: "0.2rem",
+                      }}
+                    >
+                      {quiz.title}
+                    </div>
+                    {quiz.category && (
+                      <div style={{ fontSize: "0.85rem", color: "#a0aec0" }}>
+                        Category: {quiz.category}
+                      </div>
+                    )}
+                  </div>
+
+                  {quiz.description && (
+                    <div
+                      style={{
+                        fontSize: "0.9rem",
+                        color: "#cbd5e0",
+                        marginTop: "0.25rem",
+                      }}
+                    >
+                      {quiz.description}
+                    </div>
+                  )}
+
+                  <div
+                    style={{
+                      fontSize: "0.85rem",
+                      color: "#a0aec0",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginTop: "0.3rem",
+                    }}
+                  >
+                    <span>{quiz.card_count} card(s)</span>
+                    <span
+                      style={{
+                        fontSize: "0.8rem",
+                        color: "#a0aec0",
+                      }}
+                    >
+                      By {quiz.author_name || "Anonymous"}
+                    </span>
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "0.5rem",
+                      marginTop: "0.75rem",
+                    }}
+                  >
+                    <button
+                      type="button"
+                      className="button login"
+                      style={{
+                        flex: 1,
+                        padding: "0.5rem 0.8rem",
+                        fontSize: "0.9rem",
+                      }}
+                      onClick={() => {
+                        if (isAuthenticated) {
+                          navigate(`/dashboard/play/${quiz.id}`);
+                        } else {
+                          loginWithRedirect();
+                        }
+                      }}
+                    >
+                      Take quiz
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </section>
-
-        {loading && (
-          <div className="loading-state">
-            <div className="loading-text">Loading public quizzes…</div>
-          </div>
-        )}
-
-        {error && !loading && (
+        {/* Quick trivia topics */}
+        <section style={{ marginBottom: "2rem" }}>
           <div
             style={{
               marginBottom: "1rem",
-              padding: "0.7rem 1rem",
-              borderRadius: "8px",
-              backgroundColor: "#c53030",
-              color: "#fff",
+              display: "flex",
+              justifyContent: "space-between",
+              gap: "1rem",
+              flexWrap: "wrap",
             }}
           >
-            {error}
-          </div>
-        )}
-
-        {!loading && !error && quizzes.length === 0 && (
-          <div
-            style={{
-              padding: "1rem 1.2rem",
-              borderRadius: "10px",
-              backgroundColor: "#2d313c",
-              border: "1px dashed rgba(255,255,255,0.2)",
-            }}
-          >
-            <div style={{ marginBottom: "0.5rem", fontWeight: 500 }}>
-              No public quizzes yet.
-            </div>
-            <div style={{ color: "#a0aec0", fontSize: "0.9rem" }}>
-              Be the first to create a quiz! Log in and start building your own
-              flashcard decks.
+            <div>
+              <h1
+                style={{
+                  fontSize: "2rem",
+                  margin: 0,
+                  marginBottom: "0.4rem",
+                }}
+              >
+                Quick Trivia Topics
+              </h1>
+              <p style={{ color: "#a0aec0", margin: 0, maxWidth: "520px" }}>
+                Pick a topic, select how many questions you want, choose a difficulty level, and start playing instantly.
+              </p>
             </div>
           </div>
-        )}
 
-        {!loading && quizzes.length > 0 && (
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
               gap: "1rem",
             }}
           >
-            {quizzes.map((quiz) => (
-              <div
-                key={quiz.id}
-                style={{
-                  padding: "1rem 1.1rem",
-                  borderRadius: "14px",
-                  backgroundColor: "#262a33",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "0.5rem",
-                }}
-              >
-                <div>
+            {QUICK_TOPICS.map((topic) => {
+              const settings = topicSettings[topic.key] || {
+                amount: 10,
+                difficulty: "hard",
+              };
+
+              return (
+                <div
+                  key={topic.key}
+                  style={{
+                    padding: "1rem 1.1rem",
+                    borderRadius: "14px",
+                    backgroundColor: "#262a33",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "0.6rem",
+                  }}
+                >
                   <div
                     style={{
-                      fontSize: "1.1rem",
+                      fontSize: "1.05rem",
                       fontWeight: 600,
                       marginBottom: "0.2rem",
                     }}
                   >
-                    {quiz.title}
+                    {topic.label}
                   </div>
-                  {quiz.category && (
-                    <div style={{ fontSize: "0.85rem", color: "#a0aec0" }}>
-                      Category: {quiz.category}
-                    </div>
-                  )}
-                </div>
 
-                {quiz.description && (
                   <div
                     style={{
-                      fontSize: "0.9rem",
-                      color: "#cbd5e0",
-                      marginTop: "0.25rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.4rem",
+                      fontSize: "0.85rem",
                     }}
                   >
-                    {quiz.description}
+                    <label style={{ color: "#a0aec0" }}>
+                      Number of questions
+                    </label>
+                    <select
+                      value={settings.amount}
+                      onChange={(e) =>
+                        handleAmountChange(topic.key, e.target.value)
+                      }
+                      style={{
+                        padding: "0.35rem 0.5rem",
+                        borderRadius: "8px",
+                        border: "1px solid #4a5568",
+                        backgroundColor: "#1a202c",
+                        color: "#e2e8f0",
+                        fontSize: "0.9rem",
+                      }}
+                    >
+                      {[10, 15, 20, 25, 30, 40, 50].map((n) => (
+                        <option key={n} value={n}>
+                          {n}
+                        </option>
+                      ))}
+                    </select>
                   </div>
-                )}
 
-                <div
-                  style={{
-                    fontSize: "0.85rem",
-                    color: "#a0aec0",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginTop: "0.3rem",
-                  }}
-                >
-                  <span>{quiz.card_count} card(s)</span>
-                  <span
+                  <div
                     style={{
-                      fontSize: "0.8rem",
-                      color: "#a0aec0",
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "0.4rem",
+                      fontSize: "0.85rem",
                     }}
                   >
-                    By {quiz.author_name || "Anonymous"}
-                  </span>
-                </div>
+                    <label style={{ color: "#a0aec0" }}>Difficulty</label>
+                    <select
+                      value={settings.difficulty}
+                      onChange={(e) =>
+                        handleDifficultyChange(topic.key, e.target.value)
+                      }
+                      style={{
+                        padding: "0.35rem 0.5rem",
+                        borderRadius: "8px",
+                        border: "1px solid #4a5568",
+                        backgroundColor: "#1a202c",
+                        color: "#e2e8f0",
+                        fontSize: "0.9rem",
+                      }}
+                    >
+                      <option value="easy">Easy</option>
+                      <option value="medium">Medium</option>
+                      <option value="hard">Hard</option>
+                    </select>
+                  </div>
 
-                <div
-                  style={{
-                    display: "flex",
-                    gap: "0.5rem",
-                    marginTop: "0.75rem",
-                  }}
-                >
                   <button
                     type="button"
                     className="button login"
                     style={{
-                      flex: 1,
+                      marginTop: "0.4rem",
                       padding: "0.5rem 0.8rem",
                       fontSize: "0.9rem",
                     }}
-                    onClick={() => {
-                      if (isAuthenticated) {
-                        navigate(`/dashboard/play/${quiz.id}`);
-                      } else {
-                        loginWithRedirect();
-                      }
-                    }}
+                    onClick={() => handlePlayNow(topic.key)}
                   >
-                    Take quiz
+                    Play now
                   </button>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
-        )}
+        </section>
+
       </main>
     </div>
   );
