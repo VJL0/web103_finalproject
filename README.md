@@ -45,7 +45,7 @@ Backend: Express.js
     </a>
   </div>
 
-# [Name of Feature 3] Navigation Bar
+✅ # [Name of Feature 3] Navigation Bar
 [short description goes here] Navigation bar for the menu options.
 
 <div>
@@ -57,7 +57,7 @@ Backend: Express.js
     </a>
   </div>
 
-# [Name of Feature 4] Pivacy Based community quizzes
+✅ # [Name of Feature 4] Pivacy Based community quizzes
 [short description goes here] Creation of quizzes can be public or be set private restricting some users from accessing.
 
 <div>
@@ -69,7 +69,7 @@ Backend: Express.js
     </a>
   </div>
 
-# [Name of Feature 5] Authenication with Google
+✅ # [Name of Feature 5] Authenication with Google
 [short description goes here] Log in/ log out with Google email address
 
 <div>
