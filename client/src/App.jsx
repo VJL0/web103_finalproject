@@ -1,28 +1,56 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import ProtectedRoute from "./components/ProtectedRoute";
-import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
+// src/App.jsx
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import ExplorePage from "./pages/ExplorePage";
+import LoginPage from "./pages/LoginPage";
 
-export default function App() {
+import DashboardHomePage from "./pages/dashboard/DashboardHomePage";
+import MyDecksPage from "./pages/dashboard/MyDecksPage";
+import DeckDetailPage from "./pages/dashboard/DeckDetailPage";
+import DeckEditorPage from "./pages/dashboard/DeckEditorPage";
+import DeckFlashcardsPage from "./pages/dashboard/DeckFlashcardsPage";
+
+import { RequireAuth } from "./auth/RequireAuth";
+import DashboardLayout from "./layouts/DashboardLayout";
+import PublicLayout from "./layouts/PublicLayout";
+
+function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <Routes>
+      {/* Public routes */}
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/explore" element={<ExplorePage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Route>
 
-        <Route path="/login" element={<Login />} />
+      {/* Protected routes */}
+      <Route
+        path="/dashboard"
+        element={
+          <RequireAuth>
+            <DashboardLayout />
+          </RequireAuth>
+        }
+      >
+        <Route index element={<DashboardHomePage />} />
 
-        {/* 🔐 Protected Routes */}
+        <Route path="decks" element={<MyDecksPage />} />
+        <Route path="decks/new" element={<DeckEditorPage />} />
+        <Route path="decks/:deckId" element={<DeckDetailPage />} />
+        <Route path="decks/:deckId/edit" element={<DeckEditorPage />} />
+
         <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
+          path="decks/:deckId/flashcards"
+          element={<DeckFlashcardsPage />}
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BrowserRouter>
+      </Route>
+
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/dashboard" replace />} />
+    </Routes>
   );
 }
+
+export default App;

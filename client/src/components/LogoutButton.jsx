@@ -1,5 +1,6 @@
 // client/src/components/LogoutButton.jsx
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "@/auth/AuthContext";
+import { Button } from "./ui/button";
 
 export default function LogoutButton() {
   const { setUser } = useAuth();
@@ -14,11 +15,8 @@ export default function LogoutButton() {
   }
 
   return (
-    <button
-      onClick={handleLogout}
-      className="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white"
-    >
+    <Button onClick={handleLogout} variant="destructive">
       Logout
-    </button>
+    </Button>
   );
 }

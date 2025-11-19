@@ -1,15 +1,8 @@
-// client/src/components/LoginButton.jsx
-export default function LoginButton() {
-  function handleLogin() {
-    window.location.href = "/auth/github";
-  }
+import { useAuth } from "@/auth/AuthContext";
+import { Button } from "./ui/button";
 
-  return (
-    <button
-      onClick={handleLogin}
-      className="px-4 py-2 rounded bg-blue-600 hover:bg-blue-700 text-white"
-    >
-      Login with GitHub
-    </button>
-  );
+export default function LoginButton() {
+  const { loginWithGitHub } = useAuth();
+
+  return <Button onClick={loginWithGitHub}>Login with GitHub</Button>;
 }
