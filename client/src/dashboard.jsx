@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "./apiConfig";
 import {
   NavLink,
   Routes,
@@ -29,7 +30,7 @@ function DashboardHome() {
           audience: import.meta.env.VITE_AUTH0_AUDIENCE,
         });
 
-        const res = await fetch("http://localhost:3000/api/quizzies/mine", {
+        const res = await fetch(`${API_BASE_URL}/api/quizzies/mine`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,7 +67,7 @@ function DashboardHome() {
         audience: import.meta.env.VITE_AUTH0_AUDIENCE,
       });
 
-      const res = await fetch(`http://localhost:3000/api/quizzies/${quizId}`, {
+      const res = await fetch(`${API_BASE_URL}/api/quizzies/${quizId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

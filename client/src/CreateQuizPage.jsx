@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "./apiConfig";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -61,7 +62,7 @@ export default function CreateQuizPage() {
       });
 
       // 1 Create the quiz
-      const quizRes = await fetch("http://localhost:3000/api/quizzies", {
+      const quizRes = await fetch(`${API_BASE_URL}/api/quizzies`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,7 +88,7 @@ export default function CreateQuizPage() {
       for (let i = 0; i < nonEmptyCards.length; i++) {
         const card = nonEmptyCards[i];
         const cardRes = await fetch(
-          `http://localhost:3000/api/cards/${quizId}`,
+          `${API_BASE_URL}/api/cards/${quizId}`,
           {
             method: "POST",
             headers: {

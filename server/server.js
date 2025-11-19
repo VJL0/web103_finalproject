@@ -11,12 +11,24 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({
-  origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
-  credentials: true
-}));
+// ----- CORS -----
+const allowedOrigins = [
+  process.env.CLIENT_ORIGIN,          // e.g. https://your-frontend.onrender.com (set in Render)
+  "http://localhost:5173",
+  "http://127.0.0.1:5173",
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
+
+// ----- Middleware -----
 app.use(express.json());
 
+// ----- Routes -----
 app.use("/api/users", usersRouter);
 app.use("/api/quizzies", quizzesRouter);
 app.use("/api/cards", cardsRouter);
@@ -29,10 +41,6 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", time: new Date().toISOString() });
 });
 
-app.listen(PORT, () => {
-  console.log(`API listening on http://localhost:${PORT}`);
-});
-
 app.get("/api/db/health", async (req, res) => {
   try {
     const r = await pool.query("SELECT NOW() as now");
@@ -40,4 +48,9 @@ app.get("/api/db/health", async (req, res) => {
   } catch (e) {
     res.status(500).json({ ok: false, error: e.message });
   }
+});
+
+// ----- Start server -----
+app.listen(PORT, () => {
+  console.log(`API listening on http://localhost:${PORT}`);
 });

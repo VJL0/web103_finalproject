@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "./apiConfig";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -31,7 +32,7 @@ export default function EditQuizPage() {
 
         // 1) Get quiz meta
         const quizRes = await fetch(
-          `http://localhost:3000/api/quizzies/${quizId}`,
+          `${API_BASE_URL}/api/quizzies/${quizId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -55,7 +56,7 @@ export default function EditQuizPage() {
 
         // 2) Get cards
         const cardsRes = await fetch(
-          `http://localhost:3000/api/cards/${quizId}`,
+          `${API_BASE_URL}/api/cards/${quizId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -138,7 +139,7 @@ export default function EditQuizPage() {
 
       // 1) Update quiz metadata
       const quizRes = await fetch(
-        `http://localhost:3000/api/quizzies/${quizId}`,
+        `${API_BASE_URL}/api/quizzies/${quizId}`,
         {
           method: "PUT",
           headers: {
@@ -171,7 +172,7 @@ export default function EditQuizPage() {
       };
 
       const cardsRes = await fetch(
-        `http://localhost:3000/api/quizzies/${quizId}/cards`,
+        `${API_BASE_URL}/api/quizzies/${quizId}/cards`,
         {
           method: "PUT",
           headers: {

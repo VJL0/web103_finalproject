@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "./apiConfig";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -29,7 +30,7 @@ export default function QuizPlayerPage() {
 
         // 1) Get quiz meta
         const quizRes = await fetch(
-          `http://localhost:3000/api/quizzies/${quizId}`,
+          `${API_BASE_URL}/api/quizzies/${quizId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -49,7 +50,7 @@ export default function QuizPlayerPage() {
 
         // 2) Get cards
         const cardsRes = await fetch(
-          `http://localhost:3000/api/cards/${quizId}`,
+          `${API_BASE_URL}/api/cards/${quizId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

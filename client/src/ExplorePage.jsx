@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "./apiConfig";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -29,7 +30,7 @@ export default function ExplorePage() {
         setLoading(true);
         setError("");
 
-        const res = await fetch("http://localhost:3000/api/quizzies/public");
+        const res = await fetch(`${API_BASE_URL}/api/quizzies/public`);
 
         if (!res.ok) {
           const errData = await res.json().catch(() => ({}));
