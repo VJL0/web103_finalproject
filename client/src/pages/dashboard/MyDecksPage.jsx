@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { api } from "@/api/http";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -55,7 +56,7 @@ export default function MyDecksPage() {
       setError("");
 
       try {
-        const res = await fetch("/api/decks/mine", {
+        const res = await fetch(api("/decks/mine"), {
           credentials: "include",
         });
 

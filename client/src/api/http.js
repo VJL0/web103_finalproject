@@ -1,5 +1,16 @@
+const API_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+
+export function api(path = "") {
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+  if (!API_URL) {
+    throw new Error("VITE_API_URL is not configured");
+  }
+  return `${API_URL}${normalizedPath}`;
+}
+
 async function request(path, options = {}) {
-  const res = await fetch(path, {
+  const url = /^https?:\/\//i.test(path) ? path : api(path);
+  const res = await fetch(url, {
     credentials: "include", // 👈 send cookies
     headers: {
       "Content-Type": "application/json",

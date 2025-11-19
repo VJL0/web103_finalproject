@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { api } from "@/api/http";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -46,7 +47,7 @@ export default function DeckEditorPage() {
     async function load() {
       setLoading(true);
       try {
-        const res = await fetch(`/api/decks/${deckId}`, {
+        const res = await fetch(api(`/decks/${deckId}`), {
           credentials: "include",
         });
         const data = await res.json();
@@ -134,7 +135,7 @@ export default function DeckEditorPage() {
 
       // CREATE
       if (!isEdit) {
-        const res = await fetch("`/api/decks", {
+        const res = await fetch(api(`/decks`), {
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
@@ -146,7 +147,7 @@ export default function DeckEditorPage() {
 
       // UPDATE deck
       if (isEdit) {
-        await fetch(`/api/decks/${deckId}`, {
+        await fetch(api(`/decks/${deckId}`), {
           method: "PUT",
           credentials: "include",
           headers: { "Content-Type": "application/json" },
@@ -155,7 +156,7 @@ export default function DeckEditorPage() {
 
         // delete removed cards
         for (const cardId of removedCardIds) {
-          await fetch(`/api/cards/${cardId}`, {
+          await fetch(api(`/cards/${cardId}`), {
             method: "DELETE",
             credentials: "include",
           });
@@ -167,7 +168,7 @@ export default function DeckEditorPage() {
 
       for (const card of validCards) {
         if (card.id) {
-          await fetch(`/api/cards/${card.id}`, {
+          await fetch(api(`/cards/${card.id}`), {
             method: "PUT",
             credentials: "include",
             headers: { "Content-Type": "application/json" },
@@ -179,7 +180,7 @@ export default function DeckEditorPage() {
             }),
           });
         } else {
-          await fetch(`/api/cards/deck/${currentDeckId}`, {
+          await fetch(api(`/cards/deck/${currentDeckId}`), {
             method: "POST",
             credentials: "include",
             headers: { "Content-Type": "application/json" },

@@ -5,7 +5,7 @@ import React, {
   useState,
   useCallback,
 } from "react";
-import { fetchMe, logoutRequest } from "../api/http";
+import { api, fetchMe, logoutRequest } from "../api/http";
 
 const AuthContext = createContext(null);
 
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
 
   const loginWithGitHub = useCallback(() => {
     // This will start the OAuth flow on the backend
-    window.location.href = "/api/auth/github";
+    window.location.href = api("/auth/github");
   }, []);
 
   const logout = useCallback(async () => {

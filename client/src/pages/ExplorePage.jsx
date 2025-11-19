@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../auth/AuthContext";
+import { api } from "@/api/http";
 
 import {
   Card,
@@ -42,7 +43,7 @@ export default function ExplorePage() {
       setError(null);
 
       try {
-        const res = await fetch("/api/decks/public", {
+        const res = await fetch(api("/decks/public"), {
           credentials: "include",
         });
 

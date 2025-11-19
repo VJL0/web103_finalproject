@@ -1,6 +1,7 @@
 // src/pages/dashboard/DeckDetailPage.jsx
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import { api } from "@/api/http";
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -41,7 +42,7 @@ export default function DeckDetailPage() {
       setError("");
 
       try {
-        const res = await fetch(`/api/decks/${deckId}`, {
+        const res = await fetch(api(`/decks/${deckId}`), {
           credentials: "include",
         });
         if (!res.ok) {
