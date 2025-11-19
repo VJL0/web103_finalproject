@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { API_BASE_URL } from "../api/http";
 import { useAuth } from "../auth/AuthContext";
 
 import {
@@ -43,7 +42,7 @@ export default function ExplorePage() {
       setError(null);
 
       try {
-        const res = await fetch(`${API_BASE_URL}/decks/public`, {
+        const res = await fetch("/api/decks/public", {
           credentials: "include",
         });
 

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
-import { API_BASE_URL } from "../../api/http";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -57,7 +56,7 @@ export default function DashboardHomePage() {
       setError(null);
 
       try {
-        const res = await fetch(`${API_BASE_URL}/decks/mine`, {
+        const res = await fetch("/api/decks/mine", {
           credentials: "include",
         });
 

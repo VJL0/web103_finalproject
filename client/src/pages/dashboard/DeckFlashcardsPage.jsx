@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { API_BASE_URL } from "../../api/http";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -44,7 +43,7 @@ export default function DeckFlashcardsPage() {
       setError(null);
 
       try {
-        const res = await fetch(`${API_BASE_URL}/decks/${deckId}`, {
+        const res = await fetch(`/api/decks/${deckId}`, {
           credentials: "include",
         });
 
